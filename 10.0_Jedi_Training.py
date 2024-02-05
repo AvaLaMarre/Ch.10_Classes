@@ -1,3 +1,6 @@
+import random
+
+import arcade
 # 10.0 Jedi Training (15pts)  Name:________________
 
 '''
@@ -49,14 +52,54 @@ Grrr says (animal name) .
 '''
 
 
+class Animal:
+    def __init__(self, name):
+        self.name = name
+        print("An Animal has been born")
+
+    def eat(self):
+        print("Munch Munch")
+
+    def make_noise(self):
+        print("Grr, says " + self.name)
 
 
+class Cat(Animal):
+    def __init__(self, name):
+        super().__init__(name)
+        print("A Cat has been born")
+
+    def make_noise(self):
+        print("Meow, says " + self.name)
 
 
+class Dog(Animal):
+    def __init__(self, name):
+        super().__init__(name)
+        print("A Dog has been born")
+
+    def make_noise(self):
+        print("Bark, says " + self.name)
 
 
+def main():
+    cat = Cat("Dinah")
+    cat.eat()
+    cat.make_noise()
+    dog1 = Dog("Bella")
+    dog1.eat()
+    dog1.make_noise()
+    dog2 = Dog("Edward")
+    dog2.eat()
+    dog2.make_noise()
+    animal = Animal("Jacob")
+    animal.eat()
+    animal.make_noise()
 
-'''
+
+if __name__ == "__main__":
+    main()
+    '''
 CLASSY BOATS (5pts)
 -------------------
 Use the following Pseudocode to create this program:
@@ -74,7 +117,42 @@ Use the following Pseudocode to create this program:
 11.) Add another class called Submarine( ) that will inherit the Boat( ) class.
 12.) In the Submarine( ) class create a method called submerge( ) that will print "(boat name) is submerging" 
 if the boat is undocked and "(boat name) can't submerge" if the boat is docked.
+'''
+print()
 
+
+class Boat:
+    def __init__(self, name):
+        self.name = name
+        self.isdocked = True
+
+    def dock(self):
+        if self.isdocked:
+            print(self.name + " is already docked")
+        else:
+            print(self.name + " is docking")
+            self.isdocked = True
+
+    def undock(self):
+        if not self.isdocked:
+            print(self.name + " is aleady undocked")
+        else:
+            print(self.name + " is undocking")
+            self.isdocked = False
+
+
+class Submarine(Boat):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def submerge(self):
+        if self.isdocked:
+            print(self.name + " is submerging")
+        else:
+            print(self.name + " cannot submerge")
+
+
+'''
 Let's Float the Boat
 13.) Instantiate an object of the Submarine( ) class. Don't forget to pass in a name.
 14.) Call the dock( ) method once
@@ -83,7 +161,24 @@ Let's Float the Boat
 17.) Call the submerge( ) method once
 18.) Call the undock( ) method once
 19.) Call the submerge( ) method a final time.
+'''
 
+
+def main():
+    boat = Submarine("Foot-Long Sub")
+    boat.dock()
+    boat.undock()
+    boat.undock()
+    boat.dock()
+    boat.dock()
+    boat.submerge()
+    boat.undock()
+    boat.submerge()
+
+
+if __name__ == "__main__":
+    main()
+'''
 OUTPUT:
 USS Hermon is already docked.
 USS Hermon is undocking
@@ -94,10 +189,6 @@ USS Hermon can't submerge!
 USS Hermon is undocking
 USS Hermon is submerging!
 '''
-
-
-
-
 
 
 '''
@@ -112,10 +203,31 @@ Add a method to the Circle Class called draw_circle and draw the circle.
 In the main program, use a for loop to call the Circle class and draw it 1000 times.
 Feel free to see what happens if you draw it 10,000 times as well.
 '''
+arcade.open_window(500, 300, "1000 Circles")
+arcade.set_background_color(arcade.color.DARK_PASTEL_BLUE)
+arcade.start_render()
 
 
+SW = 500
+SH = 300
 
 
+class Circle:
+    def __init__(self):
+        self.x = random.randint(0, SW)
+        self.y = random.randint(0, SH)
+        self.rad = 10
+        self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+    def draw_circle(self):
+        arcade.draw_circle_filled(self.x, self.y, self.rad, self.color)
 
 
+def main():
+    for i in range(1000):
+        circle = Circle()
+        circle.draw_circle()
 
+
+if __name__ == "__main__":
+    main()
