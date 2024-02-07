@@ -178,6 +178,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+print()
 '''
 OUTPUT:
 USS Hermon is already docked.
@@ -189,7 +191,6 @@ USS Hermon can't submerge!
 USS Hermon is undocking
 USS Hermon is submerging!
 '''
-
 
 '''
 1000 CIRCLES (5pts)
@@ -217,19 +218,19 @@ class Circle:
         self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     def draw_circle(self):
-        arcade.open_window(500, 300, "1000 Circles")
-        arcade.set_background_color(arcade.color.DARK_PASTEL_BLUE)
-        arcade.start_render()
         arcade.draw_circle_filled(self.x, self.y, self.rad, self.color)
-        arcade.finish_render()
 
 
 def main():
+    arcade.open_window(500, 300, "1000 Circles")
+    arcade.set_background_color(arcade.color.PINK)
+    arcade.start_render()
     for i in range(1000):
-        circle = Circle()
-        circle.draw_circle()
+        my_circle = Circle()
+        my_circle.draw_circle()
+    arcade.finish_render()
+    arcade.run()
 
 
 if __name__ == "__main__":
     main()
-
